@@ -16,5 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//**********************************/////////////////////////////////////////*
+            //Api Rest routes by holcim 
+//*********************************/////////////////////////////////////////*
+
 // Route::resource('User', 'UserController');
 Route::resource('Product','ProductController');
+Route::resource('PQR','PQRController');
