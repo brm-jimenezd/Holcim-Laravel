@@ -4,18 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePQRTable extends Migration
+class CreatePqrsTable extends Migration
 {
     /**
      * Run the migrations.
-     * run specific migrations: php artisan migrate --path=/database/migrations/my_migration.php
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('_p_q_r', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pqrs', function (Blueprint $table) {
+            $table->Increments('id');
             $table->string('question', 200);
             $table->string('answer', 200);
             $table->timestamps();
@@ -29,6 +28,6 @@ class CreatePQRTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_p_q_r');
+        Schema::dropIfExists('pqrs');
     }
 }

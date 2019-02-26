@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
+use App\PQR;
 
-class UserController extends Controller
+class PQRController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $PQR = PQR::all()->toArray();
+        return response()->json($PQR);    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +34,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $PQR = new PQR;
+        $PQR->question = $request->question;
+        $PQR->answer = $request->answer;
+        $PQR->save(); 
     }
 
     /**
@@ -45,7 +48,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $PQR= PQR::find($id);
+        if (!$PQR){
+            return response()->json(["no existe lo que está buscando, 404"]); 
+        }
+        return response()->json($PQR,200);
     }
 
     /**

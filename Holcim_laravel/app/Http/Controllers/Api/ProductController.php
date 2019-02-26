@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Product;
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product->pdfLink = $request->pdfLink;
         $product->subtitle = $request->subtitle;
         $product->imageLink = $request->imageLink;
-        $product->type = $request->type; 
+        $product->product_type = $request->product_type; 
         $product->save();
     }
 

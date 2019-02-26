@@ -17,9 +17,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->namespace('Admin')->as('admin.')->middleware(['auth', 'admin'])->group(function () {
+//     Route::resource('locations', 'LocationController');
+//     Route::resource('products','ProductController');
+//     Route::resource('pqrs','PQRController');
+    Route::resource('users', 'UserController');
+    Route::resource('pages', 'Page1Controller');
+    
+});
 
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::get('/', 'PageController@index');
+Route::get('/', 'PageController@index')->name('home');
+Route::get('/home', 'PageController@index');
+
+Route::get('/brm/{slug}', 'PageController@show')->name('page');

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'HOCIM') }}</title>
+  <title>{{ config('app.name', 'BRM') }}</title>
   <script src="{{ asset('js/app.js') }}" defer></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
@@ -25,19 +25,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                 
-                  <li class="nav-item"><a class="nav-link" href="{{ route('admin.pages.index') }}">Páginas</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="{{ route('admin.produ.index') }}">Productos</a></li> -->
                   <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}">Usuarios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('admin.pages.index') }}">Páginas</a></li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
 
-                
+                  <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}">Configs</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}">Logs</a></li>
                   <li class="nav-item dropdown">
-                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                          {{ Auth::user()->name }} <span class="caret"></span>
-                      </a>
+                     
 
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{{ route('logout') }}"
@@ -50,20 +50,20 @@
                               @csrf
                           </form>
                       </div>
-
-                      <div class="content">
-                <div class="title m-b-md">
-                    HOLCIM 
-                </div>
-
-
                   </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-  
+
+
+    <main class="py-4">
+      @include('partials.errors')
+     
+      @yield('content')
+    </main>
+ 
   </div>
   <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
 

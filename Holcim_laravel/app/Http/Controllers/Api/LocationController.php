@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
-use App\PQR;
 
-class PQRController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +12,9 @@ class PQRController extends Controller
      */
     public function index()
     {
-        $PQR = PQR::all()->toArray();
-        return response()->json($PQR);    }
+        $location = Location::all()->toArray();
+        return response()->json($location); 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,10 +34,14 @@ class PQRController extends Controller
      */
     public function store(Request $request)
     {
-        $PQR = new PQR;
-        $PQR->question = $request->question;
-        $PQR->answer = $request->answer;
-        $PQR->save(); 
+        $location = new Location;
+        $location->name = $request->name;
+        $location->latitude = $request->latitude;
+        $location->longitude = $request->longitude;
+        $location->address = $request->address;
+        $location->phone = $request->phone;
+        $location->type = $request->type;
+        $location->save();
     }
 
     /**
@@ -49,11 +52,11 @@ class PQRController extends Controller
      */
     public function show($id)
     {
-        $PQR= PQR::find($id);
-        if (!$PQR){
-            return response()->json(["no existe lo que está buscando, 404"]); 
+        $location = Location::find($id);
+        if(!$location){
+            return response()->json(["no se encontró, 402"]);
         }
-        return response()->json($PQR,200);
+        return response()->json($location, 200);
     }
 
     /**
