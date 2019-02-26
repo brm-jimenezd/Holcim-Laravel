@@ -14,17 +14,10 @@ class CreateStaticPagesTable extends Migration
     public function up()
     {
         Schema::create('static_pages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('tagline')->nullable();
-            $table->string('picture')->nullable();
-            $table->text('description')->nullable();
-            $table->longtext('content')->nullable();
-            $table->boolean('active')->default(true);
-            $table->softDeletes();
+            $table->Increments('id');
+            $table->string('title');
+            $table->text('description');
+            $table->string('image_link');
             $table->timestamps();
         });
     }
